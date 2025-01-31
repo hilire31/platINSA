@@ -9,6 +9,8 @@ public class Platformer2d : MonoBehaviour {
 
     [SerializeField] protected float m_Speed = 5f;
     [SerializeField] protected float m_JumpHeight = 8f;
+
+    [SerializeField] private float fallMultiplier = 2f; // Multiplicateur pour accélérer la chute
     protected float m_Direction = 0;
 
     protected bool m_DoubleJump = false;
@@ -19,7 +21,10 @@ public class Platformer2d : MonoBehaviour {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         mainCollider = GetComponentInChildren<BoxCollider2D>();
     }
-
+    GameController gameController;
+    private void Awake(){
+        gameController = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<GameController>();
+    }
     // Update is called once per frame
     void Update() {
         // Gère les sauts et le double saut
@@ -30,13 +35,24 @@ public class Platformer2d : MonoBehaviour {
 
         // Gère la rotation du personnage
         Flip(Mathf.FloorToInt(Mathf.Clamp(m_Direction, -1, 1)));
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            gameController.Die();
+        }
     }
 
 void FixedUpdate() {
-    // Applique le mouvement horizontal, même en l'air
-    if (m_Direction != 0) {
-        m_Rigidbody2D.velocity = new Vector2(m_Direction * m_Speed, m_Rigidbody2D.velocity.y);
-    }
+    // Inertie pour une transition fluide
+    float targetVelocityX = m_Direction * m_Speed;
+    float smoothFactor = 0.07f;
+
+    // Interpolation de la vitesse actuelle vers la vitesse cible
+    float newVelocityX = Mathf.Lerp(m_Rigidbody2D.velocity.x, targetVelocityX, smoothFactor);
+
+    // Applique la nouvelle vitesse avec l'inertie
+    m_Rigidbody2D.velocity = new Vector2(newVelocityX, m_Rigidbody2D.velocity.y);
+
 }
 
     private void Flip(int f) {
