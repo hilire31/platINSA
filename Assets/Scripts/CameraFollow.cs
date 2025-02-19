@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
@@ -19,4 +20,5 @@ public class CameraFollow : MonoBehaviour {
         // Mise à jour de la position de la caméra
         transform.position = smoothedPosition;
     }
+
 }

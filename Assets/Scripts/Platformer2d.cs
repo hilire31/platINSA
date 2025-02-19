@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Platformer2d : MonoBehaviour {
     protected Rigidbody2D m_Rigidbody2D;
-    protected BoxCollider2D mainCollider;
+    protected CapsuleCollider2D mainCollider;
 
     [SerializeField] protected float m_Speed = 5f;
     [SerializeField] protected float m_JumpHeight = 8f;
@@ -16,10 +16,11 @@ public class Platformer2d : MonoBehaviour {
     protected bool m_DoubleJump = false;
     [Range(-0.25f, 0.25f), SerializeField] protected float skinWidth = 0f;
     public LayerMask groundLayer;
-
+    private Animator anim;
     void Start() {
+        anim=GetComponent<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        mainCollider = GetComponentInChildren<BoxCollider2D>();
+        mainCollider = GetComponentInChildren<CapsuleCollider2D>();
     }
     GameController gameController;
     private void Awake(){
@@ -32,6 +33,11 @@ public class Platformer2d : MonoBehaviour {
 
         // Contrôles de direction
         m_Direction = Input.GetAxisRaw("Horizontal");
+        if (Input.GetAxisRaw("Horizontal")!=0){
+            anim.SetBool("isRunning",true);
+        }else{
+            anim.SetBool("isRunning",false);
+        }
 
         // Gère la rotation du personnage
         Flip(Mathf.FloorToInt(Mathf.Clamp(m_Direction, -1, 1)));
@@ -67,7 +73,7 @@ void FixedUpdate() {
             m_DoubleJump = true;
             Jumping();
         } 
-        // Double saut
+        
         else if (useDoubleJump && m_DoubleJump && keyPress) {
             Jumping();
             m_DoubleJump = false;
@@ -102,7 +108,7 @@ void FixedUpdate() {
 
     private void OnDrawGizmosSelected() {
         if (mainCollider == null) {
-            mainCollider = GetComponentInChildren<BoxCollider2D>();
+            mainCollider = GetComponentInChildren<CapsuleCollider2D>();
         }
 
         float radius = 0.01f;

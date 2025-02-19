@@ -11,7 +11,6 @@ public class ZoneNoSpawn : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision){
         if (collision.CompareTag("Player")){
-            Debug.Log("Joueur entré dans la bad zone !");
             gameController.UpdateCanSpawn(false);   
         }
     }

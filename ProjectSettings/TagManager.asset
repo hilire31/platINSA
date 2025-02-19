@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacle
+  - GameZone
+  - Solid
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Sol
-  - 
+  - Background
   - 
   - 
   - 
@@ -39,12 +41,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: sky
+  - name: Background
     uniqueID: 3690171581
+    locked: 0
+  - name: Player
+    uniqueID: 4153115517
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: walls
-    uniqueID: 4153115517
+  - name: Foreground
+    uniqueID: 2468215289
+    locked: 0
+  - name: UI
+    uniqueID: 2207100259
     locked: 0

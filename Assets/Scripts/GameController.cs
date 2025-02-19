@@ -4,51 +4,81 @@ using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
+        
+        
+        
+        
+        
+
 public class GameController : MonoBehaviour
 {
     Vector2 checkPointPos;
     Rigidbody2D playerRB;
     bool globalCanSpawn;
     public GameObject corpse;
+    private Animator anim;
+
     private void Start(){
         globalCanSpawn = true;
+        
         checkPointPos = transform.position;
         playerRB = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
     private void OnTriggerEnter2D(Collider2D collision){
         if (collision.CompareTag("Obstacle")){
             Die();
         }
+        if (collision.CompareTag("Solid") || collision.CompareTag("Obstacle")){
+            Debug.Log("aaa");
+            anim.SetBool("isJumpingDown",false);
+            anim.SetBool("isJumpingUp",false);
+            anim.SetBool("isJumpingDown",false);
+        }
     }
 
+    
+    private void OnTriggerExit2D(Collider2D collision){
+        if (collision.CompareTag("GameZone")){
+            UpdateCanSpawn(false);
+            Die();
+
+        }
+    }
     public void Die(){
-        Respawn(2);
+        Respawn(0.25f);
+        
     }
     public void UpdateCheckPoint(Vector2 pos){
         checkPointPos=pos;
     }
     void Respawn(float duration){
         playerRB.velocity = new Vector2(0,0);
+        
         playerRB.simulated=false;
+        anim.SetBool("isDying",true);
+        //yield return new WaitForSeconds(2);
+        anim.SetBool("isDying",false);
+        
         transform.localScale=new Vector3(0,0,0);
 
         if (globalCanSpawn){
             Instantiate(corpse, transform.position, Quaternion.identity);
         }
-        
-        StartCoroutine(Wait(duration));
+        UpdateCanSpawn(false);
         transform.position=checkPointPos;
-        transform.localScale=new Vector3(1,1,1);
+        transform.localScale=new Vector3(0.5f,0.5f,1);
         playerRB.simulated=true;
-
+        
 
     }
     public void UpdateCanSpawn(bool canSpawn){
         globalCanSpawn=canSpawn;
     }
-    IEnumerator Wait(float duration)
-    {
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(duration);
+    [SerializeField] bool die;
+    void OnUpdate(){
+        if (die) {
+            anim.SetBool("isDying",true);
+        }
     }
 }
