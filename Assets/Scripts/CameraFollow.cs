@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour {
     [SerializeField] private Transform player; // Référence au joueur
     [SerializeField] private Vector3 offset = new Vector3(0, 2, -10); // Décalage par rapport au joueur
-    [SerializeField] private float smoothSpeed = 0.3f; // Vitesse de transition de la caméra
+    [SerializeField] private float smoothSpeed = 0.8f; // Vitesse de transition de la caméra
 
     void LateUpdate() {
         if (player == null) return;

@@ -7,6 +7,7 @@ public class Platformer2d : MonoBehaviour {
     protected Rigidbody2D m_Rigidbody2D;
     protected CapsuleCollider2D mainCollider;
 
+    [SerializeField] private float smoothFactor = 0.07f;
     [SerializeField] protected float m_Speed = 5f;
     [SerializeField] protected float m_JumpHeight = 8f;
 
@@ -28,8 +29,6 @@ public class Platformer2d : MonoBehaviour {
     }
     // Update is called once per frame
     void Update() {
-        // Gère les sauts et le double saut
-        JumpVelocity(Input.GetKeyDown(KeyCode.Space), true);
 
         // Contrôles de direction
         m_Direction = Input.GetAxisRaw("Horizontal");
@@ -53,8 +52,12 @@ void FixedUpdate() {
     float targetVelocityX = m_Direction * m_Speed;
     float smoothFactor = 0.07f;
 
+
+    // Gère les sauts et le double saut
+    JumpVelocity(Input.GetKeyDown(KeyCode.Space), true);
+
     // Interpolation de la vitesse actuelle vers la vitesse cible
-    float newVelocityX = Mathf.Lerp(m_Rigidbody2D.velocity.x, targetVelocityX, smoothFactor);
+    float newVelocityX = Mathf.MoveTowards(m_Rigidbody2D.velocity.x, targetVelocityX, smoothFactor * m_Speed);
 
     // Applique la nouvelle vitesse avec l'inertie
     m_Rigidbody2D.velocity = new Vector2(newVelocityX, m_Rigidbody2D.velocity.y);
@@ -86,7 +89,9 @@ void FixedUpdate() {
 
     private void Jumping() {
         m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpHeight);
-    }
+
+}
+
 
     private bool CheckGround() {
         float radius = 0.05f;

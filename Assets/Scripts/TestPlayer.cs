@@ -10,9 +10,9 @@ public class TestPlayer : MonoBehaviour {
     [SerializeField] protected float m_Speed = 5f;
     [SerializeField] protected float m_JumpHeight = 8f;
 
-    [SerializeField] private float fallMultiplier = 2f; // Multiplicateur pour accélérer la chute
+    //[SerializeField] private float fallMultiplier = 2f; // Multiplicateur pour accélérer la chute
     protected float m_Direction = 0;
-
+    [SerializeField] protected float smoothFactor = 0.07f;
     protected bool m_DoubleJump = false;
     [Range(-0.25f, 0.25f), SerializeField] protected float skinWidth = 0f;
     public LayerMask groundLayer;
@@ -51,7 +51,6 @@ public class TestPlayer : MonoBehaviour {
 void FixedUpdate() {
     // Inertie pour une transition fluide
     float targetVelocityX = m_Direction * m_Speed;
-    float smoothFactor = 0.07f;
 
     // Interpolation de la vitesse actuelle vers la vitesse cible
     float newVelocityX = Mathf.Lerp(m_Rigidbody2D.velocity.x, targetVelocityX, smoothFactor);

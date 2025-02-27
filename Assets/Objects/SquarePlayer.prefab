@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2227326094048319875}
   - component: {fileID: 5584625389368964342}
   - component: {fileID: 8711367034038398511}
+  - component: {fileID: 6238243646644615186}
   m_Layer: 0
   m_Name: SquarePlayer
   m_TagString: Player
@@ -96,7 +97,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3873036068827424307}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 6079a869af5a5ef4ebd03e03a34e45e8, type: 2}
   m_IncludeLayers:
@@ -173,7 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fb7c21fd6a903448ebed6d87b8de9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 5
+  smoothFactor: 1
+  m_Speed: 8
   m_JumpHeight: 8
   fallMultiplier: 2
   skinWidth: 0
@@ -193,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   corpse: {fileID: 3218240617513972058, guid: bd8c97b1e833ed849ad37c482fd9eb59, type: 3}
+  die: 0
 --- !u!95 &8711367034038398511
 Animator:
   serializedVersion: 5
@@ -214,3 +217,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &6238243646644615186
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3873036068827424307}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 6079a869af5a5ef4ebd03e03a34e45e8, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06852436, y: 0.027410746}
+  m_Size: {x: 1.8150959, y: 2.5551786}
+  m_Direction: 0
