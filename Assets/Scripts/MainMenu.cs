@@ -10,11 +10,27 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadSceneAsync(2);
     }
 
+    public void CreditsGame()
+    {
+        SceneManager.LoadSceneAsync(4);
+    }
+
     public void PlayTuto()
     {
         SceneManager.LoadSceneAsync(3);
     }
+    public void Son()
+    {
+        AudioListener.volume = 1;
+      
+    }
 
+        public void Mute()
+
+    {
+        AudioListener.volume = 0;
+      
+    }
     public void QuitGame()
     {
         Application.Quit();
