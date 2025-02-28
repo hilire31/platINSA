@@ -89,7 +89,20 @@ public class Platformer2d : MonoBehaviour {
 
         // Contrôles de direction
         //directionVector = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
+        Debug.Log(m_Rigidbody2D.velocity.y);
         
+        if (CheckGround()) {
+            anim.SetBool("isJumpingUp",false);
+            anim.SetBool("isJumpingDown",false);
+        }
+        if (!CheckGround() && m_Rigidbody2D.velocity.y<=0) {
+            anim.SetBool("isJumpingDown",true);
+            anim.SetBool("isJumpingUp",false);
+        }
+        if (!CheckGround() && m_Rigidbody2D.velocity.y>=0) {
+            anim.SetBool("isJumpingUp",true);
+            anim.SetBool("isJumpingDown",false);
+        }
         m_Direction = directionVector[0]; 
         /*
         if (Input.GetAxisRaw("Horizontal")!=0){
