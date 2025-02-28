@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour
     public GameObject corpse;
     private Animator anim;
 
+    float bumperForce = 7;
+
     private void Start(){
         globalCanSpawn = true;
         
@@ -34,6 +36,15 @@ public class GameController : MonoBehaviour
             anim.SetBool("isJumpingDown",false);
             anim.SetBool("isJumpingUp",false);
             anim.SetBool("isJumpingDown",false);
+        }
+    
+        if (collision.CompareTag("Bumper") && false){
+                Debug.Log("bump");
+                ContactPoint2D[] contacts = null;
+                collision.GetContacts(contacts);
+                var norm = contacts[0].normal;
+                playerRB.velocity = Vector2.zero;
+                playerRB.AddForce( -1 * norm * bumperForce,  ForceMode2D.Impulse);
         }
     }
 
