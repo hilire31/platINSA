@@ -174,7 +174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fb7c21fd6a903448ebed6d87b8de9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothFactor: 1
   m_Speed: 8
   m_JumpHeight: 8
   fallMultiplier: 2
@@ -182,6 +181,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  MoveAction: {fileID: -5542546779461300869, guid: bbd4569692d26d441a47efe5f42add23, type: 3}
+  JumpAction: {fileID: 7211083454351103775, guid: bbd4569692d26d441a47efe5f42add23, type: 3}
+  ShellAction: {fileID: -2299283262984734394, guid: bbd4569692d26d441a47efe5f42add23, type: 3}
 --- !u!114 &5584625389368964342
 MonoBehaviour:
   m_ObjectHideFlags: 0

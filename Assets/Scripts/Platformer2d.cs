@@ -1,13 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Platformer2d : MonoBehaviour {
     protected Rigidbody2D m_Rigidbody2D;
     protected CapsuleCollider2D mainCollider;
 
-    [SerializeField] private float smoothFactor = 0.07f;
     [SerializeField] protected float m_Speed = 5f;
     [SerializeField] protected float m_JumpHeight = 8f;
 
@@ -18,10 +20,63 @@ public class Platformer2d : MonoBehaviour {
     [Range(-0.25f, 0.25f), SerializeField] protected float skinWidth = 0f;
     public LayerMask groundLayer;
     private Animator anim;
+
+    public InputActionReference MoveAction;
+    public InputActionReference JumpAction;
+    public InputActionReference ShellAction;
+    protected Vector2 directionVector = new(0,0);
     void Start() {
         anim=GetComponent<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         mainCollider = GetComponentInChildren<CapsuleCollider2D>();
+         
+    }
+
+    private void OnEnable()
+    {
+        MoveAction.action.performed += OnMoveActionPerformed;
+        MoveAction.action.canceled += OnMoveActionCanceled;
+        MoveAction.action.Enable();
+
+        JumpAction.action.started += OnJumpActionStarted;
+        JumpAction.action.Enable();
+
+        ShellAction.action.started += OnShellActionStarted;
+        ShellAction.action.Enable();
+    }
+
+    private void OnShellActionStarted(InputAction.CallbackContext context)
+    {
+        gameController.Die();
+    }
+
+    private void OnMoveActionPerformed(InputAction.CallbackContext context)
+    {
+        directionVector=context.ReadValue<Vector2>();
+        anim.SetBool("isRunning",true);
+    }
+    private void OnMoveActionCanceled(InputAction.CallbackContext context)
+    {
+        directionVector=Vector2.zero;
+        anim.SetBool("isRunning",false);
+    }
+
+    private void OnJumpActionStarted(InputAction.CallbackContext context)
+    {
+        JumpVelocity(true, true);
+    }
+
+    private void OnDisable()
+    {
+        MoveAction.action.performed -= OnMoveActionPerformed;
+        MoveAction.action.canceled -= OnMoveActionCanceled;
+        MoveAction.action.Disable();
+
+        JumpAction.action.started -= OnJumpActionStarted;
+        JumpAction.action.Disable();
+
+        ShellAction.action.started -= OnShellActionStarted;
+        ShellAction.action.Disable();
     }
     GameController gameController;
     private void Awake(){
@@ -29,40 +84,52 @@ public class Platformer2d : MonoBehaviour {
     }
     // Update is called once per frame
     void Update() {
+        // Gère les sauts et le double saut
+        
 
         // Contrôles de direction
-        m_Direction = Input.GetAxisRaw("Horizontal");
+        //directionVector = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
+        Debug.Log(m_Rigidbody2D.velocity.y);
+        
+        if (CheckGround()) {
+            anim.SetBool("isJumpingUp",false);
+            anim.SetBool("isJumpingDown",false);
+        }
+        if (!CheckGround() && m_Rigidbody2D.velocity.y<=0) {
+            anim.SetBool("isJumpingDown",true);
+            anim.SetBool("isJumpingUp",false);
+        }
+        if (!CheckGround() && m_Rigidbody2D.velocity.y>=0) {
+            anim.SetBool("isJumpingUp",true);
+            anim.SetBool("isJumpingDown",false);
+        }
+        m_Direction = directionVector[0]; 
+        /*
         if (Input.GetAxisRaw("Horizontal")!=0){
             anim.SetBool("isRunning",true);
         }else{
             anim.SetBool("isRunning",false);
         }
+        */
 
         // Gère la rotation du personnage
         Flip(Mathf.FloorToInt(Mathf.Clamp(m_Direction, -1, 1)));
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            gameController.Die();
-        }
+        
     }
 
-void FixedUpdate() {
-    // Inertie pour une transition fluide
-    float targetVelocityX = m_Direction * m_Speed;
-    float smoothFactor = 0.07f;
+    void FixedUpdate() {
+        // Inertie pour une transition fluide
+        float targetVelocityX = m_Direction * m_Speed;
+        float smoothFactor = 0.07f;
 
+        // Interpolation de la vitesse actuelle vers la vitesse cible
+        float newVelocityX = Mathf.Lerp(m_Rigidbody2D.velocity.x, targetVelocityX, smoothFactor);
 
-    // Gère les sauts et le double saut
-    JumpVelocity(Input.GetKeyDown(KeyCode.Space), true);
+        // Applique la nouvelle vitesse avec l'inertie
+        m_Rigidbody2D.velocity = new Vector2(newVelocityX, m_Rigidbody2D.velocity.y);
 
-    // Interpolation de la vitesse actuelle vers la vitesse cible
-    float newVelocityX = Mathf.MoveTowards(m_Rigidbody2D.velocity.x, targetVelocityX, smoothFactor * m_Speed);
-
-    // Applique la nouvelle vitesse avec l'inertie
-    m_Rigidbody2D.velocity = new Vector2(newVelocityX, m_Rigidbody2D.velocity.y);
-
-}
+    }
 
     private void Flip(int f) {
         if (f != 0) {
@@ -76,7 +143,7 @@ void FixedUpdate() {
             m_DoubleJump = true;
             Jumping();
         } 
-        
+        // Double saut je le mets en pause je le supprimerai quand le walljump marchera
         else if (useDoubleJump && m_DoubleJump && keyPress) {
             Jumping();
             m_DoubleJump = false;
@@ -89,9 +156,7 @@ void FixedUpdate() {
 
     private void Jumping() {
         m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpHeight);
-
-}
-
+    }
 
     private bool CheckGround() {
         float radius = 0.05f;
