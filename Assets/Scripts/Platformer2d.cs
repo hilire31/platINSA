@@ -94,11 +94,11 @@ public class Platformer2d : MonoBehaviour {
             anim.SetBool("isJumpingUp",false);
             anim.SetBool("isJumpingDown",false);
         }
-        if (!CheckGround() && m_Rigidbody2D.velocity.y<=0) {
+        else if (!CheckGround() && m_Rigidbody2D.velocity.y<=0) {
             anim.SetBool("isJumpingDown",true);
             anim.SetBool("isJumpingUp",false);
         }
-        if (!CheckGround() && m_Rigidbody2D.velocity.y>=0) {
+        else if (!CheckGround() && m_Rigidbody2D.velocity.y>=0) {
             anim.SetBool("isJumpingUp",true);
             anim.SetBool("isJumpingDown",false);
         }
@@ -116,19 +116,17 @@ public class Platformer2d : MonoBehaviour {
 
         
     }
+void FixedUpdate() {
+    // Inertie pour une transition fluide
+    float targetVelocityX = m_Direction * m_Speed;
+    float smoothFactor = 0.07f;
 
-    void FixedUpdate() {
-        // Inertie pour une transition fluide
-        float targetVelocityX = m_Direction * m_Speed;
-        float smoothFactor = 0.07f;
+    // Utilisation de MoveTowards pour interpoler la vitesse actuelle vers la vitesse cible
+    float newVelocityX = Mathf.MoveTowards(m_Rigidbody2D.velocity.x, targetVelocityX, smoothFactor * m_Speed);
 
-        // Interpolation de la vitesse actuelle vers la vitesse cible
-        float newVelocityX = Mathf.Lerp(m_Rigidbody2D.velocity.x, targetVelocityX, smoothFactor);
-
-        // Applique la nouvelle vitesse avec l'inertie
-        m_Rigidbody2D.velocity = new Vector2(newVelocityX, m_Rigidbody2D.velocity.y);
-
-    }
+    // Applique la nouvelle vitesse avec l'inertie
+    m_Rigidbody2D.velocity = new Vector2(newVelocityX, m_Rigidbody2D.velocity.y);
+}
 
     private void Flip(int f) {
         if (f != 0) {
@@ -142,7 +140,6 @@ public class Platformer2d : MonoBehaviour {
             m_DoubleJump = true;
             Jumping();
         } 
-        // Double saut je le mets en pause je le supprimerai quand le walljump marchera
         else if (useDoubleJump && m_DoubleJump && keyPress) {
             Jumping();
             m_DoubleJump = false;

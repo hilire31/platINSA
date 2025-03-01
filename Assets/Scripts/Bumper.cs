@@ -4,6 +4,11 @@ using UnityEngine;
 public class Bumper : MonoBehaviour
 {
     public float bounceForce = 100f; // Intensité du rebond
+    private Animator anim;
+
+    private void Start(){
+        anim = GetComponent<Animator>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -13,7 +18,7 @@ public class Bumper : MonoBehaviour
             Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                
+                anim.SetBool("isBumping",true);
                 // Récupère le point de contact et la normale
                 ContactPoint2D contact = collision.GetContact(0);
                 Vector2 normal = contact.normal; // Vecteur perpendiculaire à la surface du bumper
@@ -22,6 +27,18 @@ public class Bumper : MonoBehaviour
 
                 // Applique la force dans la direction de la normale
                 rb.AddForce(normal * bounceForce, ForceMode2D.Impulse);
+            }
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player")) // Vérifie si c'est le joueur
+        {
+            
+            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                anim.SetBool("isBumping",false);
             }
         }
     }

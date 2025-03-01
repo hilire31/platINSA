@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
 {
     Vector2 checkPointPos;
     Rigidbody2D playerRB;
-    bool globalCanSpawn;
+    private bool globalCanSpawn;
     public GameObject corpse;
     private Animator anim;
 
@@ -32,7 +32,6 @@ public class GameController : MonoBehaviour
             Die();
         }
         if (collision.CompareTag("Solid") || collision.CompareTag("Obstacle")){
-            Debug.Log("aaa");
             anim.SetBool("isJumpingDown",false);
             anim.SetBool("isJumpingUp",false);
             anim.SetBool("isJumpingDown",false);
