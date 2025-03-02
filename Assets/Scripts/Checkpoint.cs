@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    bool flag_touche = false;
     GameController gameController;
     private void Awake(){
         gameController = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<GameController>();
@@ -12,7 +13,12 @@ public class Checkpoint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision){
         if (collision.CompareTag("Player")){
             gameController.UpdateCheckPoint(transform.position);
-            gameController.UpdateCanSpawn(false);   
+            gameController.UpdateCanSpawn(false);
+            if (flag_touche == false)
+            {
+                scoremanager.instance.AddPoint();
+            }
+            flag_touche = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
