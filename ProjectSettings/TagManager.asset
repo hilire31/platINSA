@@ -8,6 +8,7 @@ TagManager:
   - GameZone
   - Solid
   - Bumper
+  - Boost
   layers:
   - Default
   - TransparentFX
