@@ -11,6 +11,10 @@ public class Platformer2d : MonoBehaviour {
     protected CapsuleCollider2D mainCollider;
 
     [SerializeField] protected float m_Speed = 5f;
+    public float normalSpeed = 5f;
+    public float boostedSpeed = 8f;
+    public float boostDuration = 3f;
+    private bool isBoosted = false;
     [SerializeField] protected float m_JumpHeight = 8f;
 
     [SerializeField] private float fallMultiplier = 2f; // Multiplicateur pour accélérer la chute
@@ -115,18 +119,18 @@ public class Platformer2d : MonoBehaviour {
         Flip(Mathf.FloorToInt(Mathf.Clamp(m_Direction, -1, 1)));
 
         
+        }
+    void FixedUpdate() {
+        // Inertie pour une transition fluide
+        float targetVelocityX = m_Direction * m_Speed;
+        float smoothFactor = 0.07f;
+
+        // Utilisation de MoveTowards pour interpoler la vitesse actuelle vers la vitesse cible
+        float newVelocityX = Mathf.MoveTowards(m_Rigidbody2D.velocity.x, targetVelocityX, smoothFactor * m_Speed);
+
+        // Applique la nouvelle vitesse avec l'inertie
+        m_Rigidbody2D.velocity = new Vector2(newVelocityX, m_Rigidbody2D.velocity.y);
     }
-void FixedUpdate() {
-    // Inertie pour une transition fluide
-    float targetVelocityX = m_Direction * m_Speed;
-    float smoothFactor = 0.07f;
-
-    // Utilisation de MoveTowards pour interpoler la vitesse actuelle vers la vitesse cible
-    float newVelocityX = Mathf.MoveTowards(m_Rigidbody2D.velocity.x, targetVelocityX, smoothFactor * m_Speed);
-
-    // Applique la nouvelle vitesse avec l'inertie
-    m_Rigidbody2D.velocity = new Vector2(newVelocityX, m_Rigidbody2D.velocity.y);
-}
 
     private void Flip(int f) {
         if (f != 0) {
@@ -150,9 +154,30 @@ void FixedUpdate() {
         }
     }
 
+
+    private IEnumerator BoostSpeed(){
+        isBoosted = true;
+        m_Speed = boostedSpeed;
+        
+        yield return new WaitForSeconds(boostDuration);
+        
+        m_Speed = normalSpeed;
+        isBoosted = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Boost") && !isBoosted)
+        {
+            
+            StartCoroutine(BoostSpeed());
+            Destroy(other.gameObject); // Supprime l'item de boost après usage
+        }
+    }
     private void Jumping() {
         m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, m_JumpHeight);
     }
+
 
     private bool CheckGround() {
         float radius = 0.05f;
