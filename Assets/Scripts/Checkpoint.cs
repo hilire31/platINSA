@@ -16,7 +16,7 @@ public class Checkpoint : MonoBehaviour
             gameController.UpdateCanSpawn(false);
             if (flag_touche == false)
             {
-                scoremanager.instance.AddPoint();
+                ScoreManager.instance.AddPoint();
             }
             flag_touche = true;
         }
