@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour
         public void Mute()
 
     {
-        AudioListener.volume = 0;
+        AudioListener.volume = 1;
       
     }
     public void QuitGame()
