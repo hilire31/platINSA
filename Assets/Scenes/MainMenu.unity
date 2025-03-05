@@ -1690,6 +1690,7 @@ GameObject:
   - component: {fileID: 746627954}
   - component: {fileID: 746627953}
   - component: {fileID: 746627955}
+  - component: {fileID: 746627956}
   m_Layer: 5
   m_Name: vents
   m_TagString: Untagged
@@ -1806,6 +1807,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &746627956
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746627951}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 29ba8eda7d0e74f459d3bdfadd4576cf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &812956110
 GameObject:
   m_ObjectHideFlags: 0
@@ -8050,6 +8072,7 @@ GameObject:
   - component: {fileID: 1831953353}
   - component: {fileID: 1831953355}
   - component: {fileID: 1831953354}
+  - component: {fileID: 1831953356}
   m_Layer: 5
   m_Name: Tortue
   m_TagString: Untagged
@@ -8114,6 +8137,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831953352}
   m_CullTransparentMesh: 1
+--- !u!95 &1831953356
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831953352}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4e6617bdc65ceeb4694197c7d983d96a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1848170084
 GameObject:
   m_ObjectHideFlags: 0

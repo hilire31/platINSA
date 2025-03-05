@@ -5,7 +5,7 @@ public class TitleScreen : MonoBehaviour
 {
     void Start()
     {
-        Invoke("GoToNextScene", 25f); // Après 25 secondes, changer de scène
+        Invoke("GoToNextScene", 40f); // Après 25 secondes, changer de scène
     }
 
     void Update()
