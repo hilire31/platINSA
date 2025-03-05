@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public void CreditsGame()
     {
-        SceneManager.LoadSceneAsync(4);
+        SceneManager.LoadSceneAsync(5);
     }
 
     public void PlayTuto()
