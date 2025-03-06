@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
 
     float bumperForce = 7;
 
+    //AudioSource bump_sound;
+
     private void Start(){
         globalCanSpawn = true;
         
@@ -38,6 +40,7 @@ public class GameController : MonoBehaviour
         }
     
         if (collision.CompareTag("Bumper") && false){
+                //bump_sound=GetComponent<AudioSource>();
                 Debug.Log("bump");
                 ContactPoint2D[] contacts = null;
                 collision.GetContacts(contacts);
