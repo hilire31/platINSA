@@ -177,8 +177,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Speed: 8
   normalSpeed: 8
-  boostedSpeed: 16
-  boostDuration: 4
+  boostedSpeed: 13
+  boostDuration: 3
   m_JumpHeight: 8
   fallMultiplier: 2
   skinWidth: 0
