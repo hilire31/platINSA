@@ -5,6 +5,7 @@ public class Bumper : MonoBehaviour
 {
     public float bounceForce = 100f; // Intensité du rebond
     private Animator anim;
+    public AudioSource audioSourceBump;
 
     private void Start(){
         anim = GetComponent<Animator>();
@@ -19,6 +20,7 @@ public class Bumper : MonoBehaviour
             if (rb != null)
             {
                 anim.SetBool("isBumping",true);
+                audioSourceBump.Play();
                 // Récupère le point de contact et la normale
                 ContactPoint2D contact = collision.GetContact(0);
                 Vector2 normal = contact.normal; // Vecteur perpendiculaire à la surface du bumper

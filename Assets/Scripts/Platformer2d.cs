@@ -29,6 +29,7 @@ public class Platformer2d : MonoBehaviour {
     public InputActionReference JumpAction;
     public InputActionReference ShellAction;
     protected Vector2 directionVector = new(0,0);
+    public AudioSource audioSourceJump;
     void Start() {
         anim=GetComponent<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -67,6 +68,7 @@ public class Platformer2d : MonoBehaviour {
 
     private void OnJumpActionStarted(InputAction.CallbackContext context)
     {
+        audioSourceJump.Play();
         JumpVelocity(true, true);
     }
 
