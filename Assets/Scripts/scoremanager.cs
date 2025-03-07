@@ -26,10 +26,12 @@ public class ScoreManager : MonoBehaviour
         scoreText.text = score.ToString() + " FLAGS";
     }
 
-    // Update is called once per frame
     public void AddPoint() {
         score++;
-        //Debug.Log(score+" flags (debug à supprimer)");
+        scoreText.text = score.ToString() + " FLAGS";
+    }
+    public void Reset() {
+        score=0;
         scoreText.text = score.ToString() + " FLAGS";
     }
 }
