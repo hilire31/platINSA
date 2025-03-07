@@ -20,7 +20,7 @@ public class Platformer2d : MonoBehaviour {
     [SerializeField] private float fallMultiplier = 2f; // Multiplicateur pour accélérer la chute
     protected float m_Direction = 0;
 
-    protected bool m_DoubleJump = false;
+    protected bool m_DoubleJump = true;
     [Range(-0.25f, 0.25f), SerializeField] protected float skinWidth = 0f;
     public LayerMask groundLayer;
     private Animator anim;
@@ -97,6 +97,7 @@ public class Platformer2d : MonoBehaviour {
         //directionVector = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
         
         if (CheckGround()) {
+            m_DoubleJump=true;
             anim.SetBool("isJumpingUp",false);
             anim.SetBool("isJumpingDown",false);
         }
