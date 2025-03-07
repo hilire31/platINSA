@@ -8,13 +8,13 @@ using UnityEngine;
 public class EndFlag : MonoBehaviour
 {
     public bool isTuto;
-    [SerializeField] private SceneAsset scene; 
+    [SerializeField] private int sceneNumber; 
     private void OnTriggerEnter2D(Collider2D collision){
         if (collision.CompareTag("Player")){
             if (isTuto){
                 ScoreManager.instance.Reset();
             }
-            SceneController.instance.LoadScene(scene.name); 
+            SceneController.instance.LoadScene(sceneNumber); 
 
         }
     }
