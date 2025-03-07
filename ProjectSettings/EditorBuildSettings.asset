@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/tuto.unity
     guid: 8bb2a0aaa2cd6ae408e4406dae221b70
+  - enabled: 1
+    path: Assets/Scenes/SpeedSection.unity
+    guid: 8e3b9daab3bc75741a791d0efcf09a7a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b6d8111f0d438e44fbb853f20dc21d98, type: 2}

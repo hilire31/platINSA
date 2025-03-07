@@ -1222,17 +1222,21 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -141851779
       objectReference: {fileID: 0}
+    - target: {fileID: 2995116239327259360, guid: c9d55a8bcc9d81844b851d15118ace26, type: 3}
+      propertyPath: scene
+      value: 
+      objectReference: {fileID: 102900000, guid: 850f9d07e93a8234ea2c94ee75d1f72d, type: 3}
     - target: {fileID: 3257464219470380111, guid: c9d55a8bcc9d81844b851d15118ace26, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.51
       objectReference: {fileID: 0}
     - target: {fileID: 3257464219470380111, guid: c9d55a8bcc9d81844b851d15118ace26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 133.18
+      value: 130.44
       objectReference: {fileID: 0}
     - target: {fileID: 3257464219470380111, guid: c9d55a8bcc9d81844b851d15118ace26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.56
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 3257464219470380111, guid: c9d55a8bcc9d81844b851d15118ace26, type: 3}
       propertyPath: m_LocalPosition.z
