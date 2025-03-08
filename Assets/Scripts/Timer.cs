@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TimerScript : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class TimerScript : MonoBehaviour
                 Debug.Log("Time is UP!");
                 TimeLeft = 0;
                 TimerOn = false;
+                SceneManager.LoadScene(4); // Charge la scène 1
             }
         }
     }
@@ -43,3 +45,4 @@ public class TimerScript : MonoBehaviour
     }
 
 }
+
