@@ -39,14 +39,9 @@ public class GameController : MonoBehaviour
             anim.SetBool("isJumpingDown",false);
         }
     
-        if (collision.CompareTag("Bumper") && false){
-                //bump_sound=GetComponent<AudioSource>();
-                Debug.Log("bump");
-                ContactPoint2D[] contacts = null;
-                collision.GetContacts(contacts);
-                var norm = contacts[0].normal;
-                playerRB.velocity = Vector2.zero;
-                playerRB.AddForce( -1 * norm * bumperForce,  ForceMode2D.Impulse);
+        if (collision.CompareTag("OutZone")){
+            UpdateCanSpawn(false);
+            Die();
         }
     }
 

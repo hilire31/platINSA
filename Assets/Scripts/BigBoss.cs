@@ -42,7 +42,7 @@ public class BigBoss : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision){
         if (collision.CompareTag("Player")){
-            //SceneController.instance.NextLevel(); load longer level ?
+            SceneController.instance.LoadScene(0);
             transform.position=originTransform;
             speed = speedInit;
             
