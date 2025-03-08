@@ -20,6 +20,9 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex+1);
     }
     public void LoadScene(int sceneNumber){
+        if (sceneNumber==2){
+            ScoreManager.instance.Reset();
+        }
         SceneManager.LoadSceneAsync(sceneNumber);
     }
 }
