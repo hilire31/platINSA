@@ -40544,17 +40544,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2227326094048319875, guid: eacae1b39fc15b94f9a694d59d6fddcc, type: 3}
+      propertyPath: QuitAction
+      value: 
+      objectReference: {fileID: -6352420049730025373, guid: bbd4569692d26d441a47efe5f42add23, type: 3}
     - target: {fileID: 3873036068827424307, guid: eacae1b39fc15b94f9a694d59d6fddcc, type: 3}
       propertyPath: m_Name
       value: SquarePlayer
       objectReference: {fileID: 0}
     - target: {fileID: 7686335708634366951, guid: eacae1b39fc15b94f9a694d59d6fddcc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 583.9
+      value: -16.47
       objectReference: {fileID: 0}
     - target: {fileID: 7686335708634366951, guid: eacae1b39fc15b94f9a694d59d6fddcc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.14
+      value: -1.22
       objectReference: {fileID: 0}
     - target: {fileID: 7686335708634366951, guid: eacae1b39fc15b94f9a694d59d6fddcc, type: 3}
       propertyPath: m_LocalPosition.z
