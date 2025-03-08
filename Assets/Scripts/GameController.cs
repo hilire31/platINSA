@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
     public void Die(){
         
         if (SceneController.instance.GetCurrentScene()==4){
-            SceneController.instance.LoadScene(1);
+            SceneController.instance.LoadScene(5);
         }
         else{
             Respawn(0.25f);

@@ -26,6 +26,8 @@ public class Platformer2d : MonoBehaviour {
     public InputActionReference MoveAction;
     public InputActionReference JumpAction;
     public InputActionReference ShellAction;
+    public InputActionReference QuitAction;
+
     protected Vector2 directionVector = new(0,0);
     public AudioSource audioSourceJump;
     void Start() {
@@ -46,6 +48,14 @@ public class Platformer2d : MonoBehaviour {
 
         ShellAction.action.started += OnShellActionStarted;
         ShellAction.action.Enable();
+
+        QuitAction.action.started += OnQuitActionStarted;
+        QuitAction.action.Enable();
+    }
+
+    private void OnQuitActionStarted(InputAction.CallbackContext context)
+    {
+        SceneController.instance.LoadScene(1);
     }
 
     private void OnShellActionStarted(InputAction.CallbackContext context)
@@ -81,6 +91,9 @@ public class Platformer2d : MonoBehaviour {
 
         ShellAction.action.started -= OnShellActionStarted;
         ShellAction.action.Disable();
+
+        QuitAction.action.started -= OnQuitActionStarted;
+        QuitAction.action.Disable();
     }
     GameController gameController;
     private void Awake(){

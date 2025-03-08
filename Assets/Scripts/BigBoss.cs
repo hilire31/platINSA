@@ -42,7 +42,8 @@ public class BigBoss : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision){
         if (collision.CompareTag("Player")){
-            SceneController.instance.LoadScene(0);
+            
+            SceneController.instance.LoadScene(5);
             transform.position=originTransform;
             speed = speedInit;
             
