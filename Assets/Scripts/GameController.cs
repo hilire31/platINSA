@@ -54,7 +54,13 @@ public class GameController : MonoBehaviour
         }
     }
     public void Die(){
-        Respawn(0.25f);
+        
+        if (SceneController.instance.GetCurrentScene()==4){
+            SceneController.instance.LoadScene(1);
+        }
+        else{
+            Respawn(0.25f);
+        }
         
     }
     public void UpdateCheckPoint(Vector2 pos){

@@ -7,14 +7,25 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        ScoreManager.instance.Reset();
-        SceneManager.LoadScene(2);
+        if (ScoreManager.instance){
+            ScoreManager.instance.Reset();
+            SceneManager.LoadScene(2);
+        }
+        else{
+            SceneManager.LoadSceneAsync(2);
+        }
+        
     }
 
     public void PlayTuto()
     {
-        ScoreManager.instance.Reset();
-        SceneManager.LoadScene(3);
+        if (ScoreManager.instance){
+            ScoreManager.instance.Reset();
+            SceneManager.LoadScene(3);
+        }
+        else{
+            SceneManager.LoadSceneAsync(3);
+        }
     }
     public void Son()
     {
