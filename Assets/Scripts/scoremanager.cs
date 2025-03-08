@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -34,4 +35,12 @@ public class ScoreManager : MonoBehaviour
         score=0;
         scoreText.text = score.ToString() + " FLAGS";
     }
+        void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) // Si l'utilisateur appuie sur Entrée
+        {
+            SceneManager.LoadScene(1); // Charge la scène 1
+        }
+    }
+
 }

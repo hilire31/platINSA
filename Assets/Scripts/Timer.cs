@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -5,17 +7,18 @@ using UnityEngine.SceneManagement;
 
 public class TimerScript : MonoBehaviour
 {
-    public float TimeLeft;
+
+    public float TimeLeft = 300;
     public bool TimerOn = false;
 
     public TMP_Text TimerTxt;
-   
-    void Start()
+
+    public void Start()
     {
         TimerOn = true;
     }
 
-    void Update()
+    public void Update()
     {
         if(TimerOn)
         {
@@ -24,17 +27,20 @@ public class TimerScript : MonoBehaviour
                 TimeLeft -= Time.deltaTime;
                 updateTimer(TimeLeft);
             }
+
             else
             {
-                Debug.Log("Time is UP!");
-                TimeLeft = 0;
+                TimeLeft = 4139;
                 TimerOn = false;
+                updateTimer(TimeLeft);
+
                 SceneManager.LoadScene(4); // Charge la scène 1
+                
             }
         }
     }
 
-    void updateTimer(float currentTime)
+    public void updateTimer(float currentTime)
     {
         currentTime += 1;
 
@@ -43,6 +49,10 @@ public class TimerScript : MonoBehaviour
 
         TimerTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-
+     
+     public void restarter()
+     {
+        TimerOn = true;
+     }
 }
 

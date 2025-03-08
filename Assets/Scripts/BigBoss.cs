@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BigBoss : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class BigBoss : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision){
         if (collision.CompareTag("Player")){
-            
+            SceneManager.LoadScene(5);
             SceneController.instance.LoadScene(5);
             transform.position=originTransform;
             speed = speedInit;

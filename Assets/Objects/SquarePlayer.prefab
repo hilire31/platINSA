@@ -188,6 +188,7 @@ MonoBehaviour:
   MoveAction: {fileID: -5542546779461300869, guid: bbd4569692d26d441a47efe5f42add23, type: 3}
   JumpAction: {fileID: 7211083454351103775, guid: bbd4569692d26d441a47efe5f42add23, type: 3}
   ShellAction: {fileID: -2299283262984734394, guid: bbd4569692d26d441a47efe5f42add23, type: 3}
+  QuitAction: {fileID: -6352420049730025373, guid: bbd4569692d26d441a47efe5f42add23, type: 3}
   audioSourceJump: {fileID: 1424062288121480343}
 --- !u!114 &5584625389368964342
 MonoBehaviour:

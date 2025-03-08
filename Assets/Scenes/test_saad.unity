@@ -1957,57 +1957,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7207448782916138291, guid: 0df3316d72ad3a94da0f78eb0179d868, type: 3}
   m_PrefabInstance: {fileID: 98078917}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &98363222
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 98363224}
-  - component: {fileID: 98363223}
-  m_Layer: 5
-  m_Name: clock
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &98363223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98363222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99890d637d1a37449a9ff2816c002d12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimeLeft: 300
-  TimerOn: 0
-  TimerTxt: {fileID: 717696713}
---- !u!224 &98363224
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98363222}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 274.5, y: 254.5}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &99389501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7766,6 +7715,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1304029128}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.387}
+--- !u!1 &410036968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 410036970}
+  - component: {fileID: 410036969}
+  m_Layer: 0
+  m_Name: clocl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &410036969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410036968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99890d637d1a37449a9ff2816c002d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeLeft: 4
+  TimerOn: 1
+  TimerTxt: {fileID: 717696713}
+--- !u!4 &410036970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410036968}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.410034, y: 2.5, z: -4.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &411292149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10822,7 +10818,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -913, y: -63.4}
+  m_AnchoredPosition: {x: -917, y: -63.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &640495592
@@ -11763,7 +11759,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -897.07996, y: -62}
+  m_AnchoredPosition: {x: -901, y: -62}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &717696713
@@ -40544,10 +40540,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2227326094048319875, guid: eacae1b39fc15b94f9a694d59d6fddcc, type: 3}
-      propertyPath: QuitAction
-      value: 
-      objectReference: {fileID: -6352420049730025373, guid: bbd4569692d26d441a47efe5f42add23, type: 3}
     - target: {fileID: 3873036068827424307, guid: eacae1b39fc15b94f9a694d59d6fddcc, type: 3}
       propertyPath: m_Name
       value: SquarePlayer
@@ -164018,6 +164010,6 @@ SceneRoots:
   - {fileID: 701478141}
   - {fileID: 574488732}
   - {fileID: 652983842944782559}
-  - {fileID: 98363224}
+  - {fileID: 410036970}
   - {fileID: 1891854125}
   - {fileID: 184767088}

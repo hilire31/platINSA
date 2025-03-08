@@ -2,21 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class FinalScorescene : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    
+    public static FinalScorescene instance;
+    public TMP_Text scoreText;
+    
+    int score;
+    
+    private void Awake(){
+        if (instance==null){
+            instance=this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else{
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        scoreText.text = score.ToString() + " FLAGS";
+    }
+
         void Update()
     {
+    
         if (Input.GetKeyDown(KeyCode.Return)) // Si l'utilisateur appuie sur Entrée
         {
             SceneManager.LoadScene(0); // Charge la scène 1
         }
     }
 }
+
+
+
